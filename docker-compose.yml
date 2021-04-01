@@ -1,0 +1,7 @@
+version: "3"
+
+services:
+  vmetric-backend:
+    build: ./
+    ports:
+      - 8000:80
