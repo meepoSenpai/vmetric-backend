@@ -17,8 +17,12 @@ pip3 install -r requirements.txt
 Since this is a FastAPI script you will have to launch the program via `uvicorn`. Once you're in the folder containing the `app.py` file simply launch the following command after installing the requirements:
 
 ```
-python3 -m uvicorn app:app
+python3 -m hypercorn app:app
 ```
+
+### Via `docker-compose`
+
+This application can also be simply run via `docker-compose`. The port exposed in the `Dockerfile` is 8000 by default.
 
 ## JSON Example
 
