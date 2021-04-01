@@ -19,3 +19,27 @@ Since this is a FastAPI script you will have to launch the program via `uvicorn`
 ```
 python3 -m uvicorn app:app
 ```
+
+## JSON Example
+
+Below is an example of the information-schema returned from the websockets:
+
+```json
+{
+    "id": "cc036794-617c-4cc3-ae17-e6c6c4daadf8", 
+    "hostname": "Jimbob", 
+    "cpu_average": 12.9625, 
+    "cpus": [
+                [0, 29.7], 
+                [1, 3.0], 
+                [2, 23.2], 
+                [3, 3.0],   
+                [4, 21.0], 
+                [5, 2.0], 
+                [6, 19.8], 
+                [7, 2.0]
+            ], 
+    "ram_used": 10724851712, 
+    "ram_total": 17179869184
+}
+```
