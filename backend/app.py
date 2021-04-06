@@ -3,6 +3,26 @@ import uuid
 from asyncio import sleep
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from typing import List, Dict
+from jsonschema import validate
+
+INPUT_SCHEMA = {
+    "type": "object",
+    "properties":
+    {
+        "id": {"type": "string"}, 
+        "hostname": {"type": "string"}, 
+        "cpu_average": {"type": "number", "minimum": 0, "maximum": 100}, 
+        "cpus": {"type": "array", "items": {
+            "type": "array", "items": {
+                "type": "number"
+                }
+            }
+        },
+        "ram_used": {"type": "integer"}, 
+        "ram_total": {"type": "integer"}
+    }
+}
+
 
 class SocketManager:
 
@@ -32,6 +52,7 @@ async def produce_metric(socket: WebSocket):
     try:
         while True:
             data = await socket.receive_json()
+            validate(data, schema=INPUT_SCHEMA)
             await manager.send_message(data)
     except WebSocketDisconnect:
         print("Disconnected websocket")
